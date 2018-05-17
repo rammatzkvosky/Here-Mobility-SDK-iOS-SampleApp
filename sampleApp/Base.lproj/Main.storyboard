@@ -570,7 +570,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wdx-sR-6hb">
-                                                    <rect key="frame" x="0.0" y="5" width="375" height="55"/>
+                                                    <rect key="frame" x="25" y="5" width="325" height="55"/>
                                                     <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                                     <state key="normal" title="Show Rides">
@@ -582,8 +582,8 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="wdx-sR-6hb" secondAttribute="trailing" id="EXV-Wq-NKM"/>
-                                                <constraint firstItem="wdx-sR-6hb" firstAttribute="leading" secondItem="BDB-6H-nmM" secondAttribute="leading" id="KXU-MF-oYJ"/>
+                                                <constraint firstAttribute="trailing" secondItem="wdx-sR-6hb" secondAttribute="trailing" constant="25" id="EXV-Wq-NKM"/>
+                                                <constraint firstItem="wdx-sR-6hb" firstAttribute="leading" secondItem="BDB-6H-nmM" secondAttribute="leading" constant="25" id="KXU-MF-oYJ"/>
                                                 <constraint firstAttribute="bottom" secondItem="wdx-sR-6hb" secondAttribute="bottom" id="oFa-Fn-caf"/>
                                                 <constraint firstItem="wdx-sR-6hb" firstAttribute="top" secondItem="BDB-6H-nmM" secondAttribute="top" constant="5" id="pAR-a9-xU7"/>
                                             </constraints>
@@ -960,7 +960,7 @@
                                                                 <color key="textColor" name="charcoalGrey"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1P4-Ev-kB5" customClass="RideStatusButton" customModule="sampleApp" customModuleProvider="target">
+                                                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1P4-Ev-kB5">
                                                                 <rect key="frame" x="257" y="16" width="73" height="34"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <state key="normal" title="BOOKED"/>
@@ -1463,8 +1463,8 @@
         <image name="RideDetailsPhoneImage" width="20" height="20"/>
         <image name="RideDetailsPrebookImage" width="145" height="119"/>
         <image name="clock" width="16" height="16"/>
-        <image name="nonDriver" width="16" height="16"/>
-        <image name="nonSupplier" width="16" height="16"/>
+        <image name="nonDriver" width="47" height="47"/>
+        <image name="nonSupplier" width="41" height="35"/>
         <image name="price" width="16" height="16"/>
         <namedColor name="aquaMarine">
             <color red="0.28200000520000001" green="0.85500001910000001" blue="0.81599998470000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -111,7 +111,7 @@ class RideStatusViewController: UIViewController {
             supplierName.text = supplier.englishName
             supplierImage.setImage(url: URL(string: supplier.logoURL))
         }
-        // TODO: // document
+        // example of generated price range
         if let pricesRange = ride.bookingEstimatedPrice.range{
             tripPrice.text = "\(pricesRange.lowerBound) - \(pricesRange.upperBound) $"
         }
@@ -186,7 +186,7 @@ class RideStatusViewController: UIViewController {
 
     internal func cancelRide() {
         guard let ride = ride else { return }
-        let cancelRequest = HereSDKDemandCancelRideRequest(rideId: ride.rideId, cancelReason: "")
+        let cancelRequest = HereSDKDemandCancelRideRequest.cancelRide(withRideId: ride.rideId, cancelReason: "")
         HereSDKDemandManager.shared.cancelRide(with: cancelRequest) { [weak self] error in
             if error != nil {
 
@@ -203,7 +203,7 @@ class RideStatusViewController: UIViewController {
         HereSDKDemandManager.shared.unregisterForRidesUpdates()
         navigationController?.popToRootViewController(animated: true)
     }
-    // currently working with raw values - SDK should provide description for objects
+
     internal func updateStatusesArray(statusLog : HereSDKDemandRideStatusLog){
         if (statussesArray.first == nil){
             statussesArray.append(statusLog)

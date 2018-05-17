@@ -24,7 +24,7 @@ extension RideDetailsViewController{
                     let rideOffersRequest = wSelf?.hereSDKRouteRequestFor(originGeocodeResult: geoOrigin, destinationGeocodeResult: geoDestination, originAddressData: originGeocodeData, destinationAddressData: destinationGeocodeData)
 
                     let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-                    let rideOffersVC : RideOffersViewController = storyboard.instantiateViewController(withIdentifier: "RideOffersViewController") as! RideOffersViewController
+                    let rideOffersVC : RideOffersViewController = storyboard.instantiateViewController(withIdentifier: RideOffersViewController.segueId) as! RideOffersViewController
                     rideOffersVC.rideRequest = rideOffersRequest
                     rideOffersVC.passengerDetails = HereSDKDemandPassenger(name: wSelf?.nameCell.textLabel?.text ?? RideDetailsDefaultValues.name,
                                                                            phoneNumber: wSelf?.phoneNumberCell.textLabel?.text ?? RideDetailsDefaultValues.phoneNumber,

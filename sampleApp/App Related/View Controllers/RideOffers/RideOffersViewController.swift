@@ -7,7 +7,7 @@ import HereSDKDemandKit
 
 class RideOffersViewController: UIViewController {
 
-    static let segueId = "showRideOffersSegue"
+    static let segueId = "RideOffersViewController"
 
     var rideRequest: HereSDKDemandRideOffersRequest?
     var passengerDetails : HereSDKDemandPassenger?

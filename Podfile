@@ -11,12 +11,3 @@ target 'sampleApp' do
   pod 'HereSDKDemandKit', '~> 1.0.1'
   pod 'HereSDKMapKit', '~> 1.0.1'
 end
-
-# Workaround for https://github.com/CocoaPods/CocoaPods/pull/6964
-post_install do |installer|
-  installer.pods_project.targets.each do |target|
-    target.build_configurations.each do |config|
-      config.build_settings['PROVISIONING_PROFILE_SPECIFIER'] = ''
-    end
-  end
-end

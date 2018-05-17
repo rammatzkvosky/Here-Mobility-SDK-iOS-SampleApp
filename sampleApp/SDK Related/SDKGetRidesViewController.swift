@@ -49,9 +49,9 @@ extension GetRidesViewController {
     }
 
     func requestGeocodeResults(query: String) {
-        guard let lastUserLocation = lastUserLocation else { return }
+        guard let lastLocation = lastLocation else { return }
         mapService.geocodeQuery(query,
-                                forlocation: lastUserLocation,
+                                forlocation: lastLocation,
                                 resultType: .place,
                                 countryCode: "") { [weak self] (results, error) in
                                     if error == nil {
@@ -118,7 +118,7 @@ extension SDKGetRidesViewController : HereSDKMapViewDelegate{
     ///   - mapView: HereSDKMapView
     ///   - userLocation: userLocationAnnotation that specifies user location
     func mapView(_ mapView: HereSDKMapView, didUpdate userLocationAnnotation: HereSDKUserLocationAnnotation) {
-//        lastUserLocation = CLLocation(latitude:  userLocationAnnotation.coordinate.latitude, longitude: userLocationAnnotation.coordinate.longitude)
+//        lastLocation = CLLocation(latitude:  userLocationAnnotation.coordinate.latitude, longitude: userLocationAnnotation.coordinate.longitude)
     }
 
     ///  used to set annotation layout after adding annotation to map

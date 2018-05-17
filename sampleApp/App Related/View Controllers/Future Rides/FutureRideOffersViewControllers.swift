@@ -47,7 +47,7 @@ extension FutureRideOffersViewControllers: UITableViewDelegate, UITableViewDataS
 extension FutureRideOffersViewControllers: FutureRideTableCellDelegate {
 
    func futureRideCell(_ cell: FutureRideTableViewCell, didCancelRide ride: HereSDKDemandRide) {
-        let cancelRequest = HereSDKDemandCancelRideRequest(rideId: ride.rideId, cancelReason: "")
+        let cancelRequest = HereSDKDemandCancelRideRequest.cancelRide(withRideId: ride.rideId, cancelReason: "")
         HereSDKDemandManager.shared.cancelRide(with: cancelRequest) { [weak self] error in
             if error != nil {
 

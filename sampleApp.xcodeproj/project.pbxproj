@@ -41,7 +41,7 @@
 		F2F92C0A20A341B3008EA19D /* RideDetailsSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F92C0520A341B3008EA19D /* RideDetailsSwitchCell.swift */; };
 		F2F92C0B20A341B3008EA19D /* RideDetailsTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F92C0620A341B3008EA19D /* RideDetailsTextFieldCell.swift */; };
 		F2F92C0C20A341B3008EA19D /* RideDetailsSectionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F92C0720A341B3008EA19D /* RideDetailsSectionHeaderCell.swift */; };
-		FD6E21AD232E3FAF9136039F /* Pods_sampleApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 562A0AE5C678245913909759 /* Pods_sampleApp.framework */; };
+		FD6E21AD232E3FAF9136039F /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		FF705EDC20A0AA8200774BB5 /* sampleAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF705EDB20A0AA8200774BB5 /* sampleAppTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,9 +56,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		562A0AE5C678245913909759 /* Pods_sampleApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sampleApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		57973658C1567CE4094293DF /* Pods-sampleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sampleApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-sampleApp/Pods-sampleApp.release.xcconfig"; sourceTree = "<group>"; };
-		E9FEA1ABEB11392EF88DD138 /* Pods-sampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sampleApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-sampleApp/Pods-sampleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		F2639FB920A8857200700381 /* FutureRideOffersViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureRideOffersViewControllers.swift; sourceTree = "<group>"; };
 		F2639FCC20A9EC7300700381 /* BaseRideTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRideTableViewCell.swift; sourceTree = "<group>"; };
 		F2639FCE20A9EE5C00700381 /* FutureRideTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureRideTableViewCell.swift; sourceTree = "<group>"; };
@@ -97,7 +94,6 @@
 		F2F92C0520A341B3008EA19D /* RideDetailsSwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideDetailsSwitchCell.swift; sourceTree = "<group>"; };
 		F2F92C0620A341B3008EA19D /* RideDetailsTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideDetailsTextFieldCell.swift; sourceTree = "<group>"; };
 		F2F92C0720A341B3008EA19D /* RideDetailsSectionHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideDetailsSectionHeaderCell.swift; sourceTree = "<group>"; };
-		FF705ED920A0AA8200774BB5 /* sampleAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sampleAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF705EDB20A0AA8200774BB5 /* sampleAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sampleAppTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,30 +102,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD6E21AD232E3FAF9136039F /* Pods_sampleApp.framework in Frameworks */,
+				FD6E21AD232E3FAF9136039F /* BuildFile in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		83E44D59652304A232C45194 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				562A0AE5C678245913909759 /* Pods_sampleApp.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		938E397335A744C2C40EAF57 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				E9FEA1ABEB11392EF88DD138 /* Pods-sampleApp.debug.xcconfig */,
-				57973658C1567CE4094293DF /* Pods-sampleApp.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		F2639FB820A8852700700381 /* Future Rides */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,20 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				F2D1C3EC208E17B7003388A2 /* sampleApp */,
-				FF705EDA20A0AA8200774BB5 /* sampleAppTests */,
-				F2D1C3EB208E17B7003388A2 /* Products */,
-				938E397335A744C2C40EAF57 /* Pods */,
-				83E44D59652304A232C45194 /* Frameworks */,
 			);
-			sourceTree = "<group>";
-		};
-		F2D1C3EB208E17B7003388A2 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				F2D1C3EA208E17B7003388A2 /* sampleApp.app */,
-				FF705ED920A0AA8200774BB5 /* sampleAppTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		F2D1C3EC208E17B7003388A2 /* sampleApp */ = {
@@ -306,14 +272,6 @@
 			path = RideDetailsTableViewCells;
 			sourceTree = "<group>";
 		};
-		FF705EDA20A0AA8200774BB5 /* sampleAppTests */ = {
-			isa = PBXGroup;
-			children = (
-				FF705EDB20A0AA8200774BB5 /* sampleAppTests.swift */,
-			);
-			path = sampleAppTests;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -365,7 +323,6 @@
 				Base,
 			);
 			mainGroup = F2D1C3E1208E17B7003388A2;
-			productRefGroup = F2D1C3EB208E17B7003388A2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -627,7 +584,6 @@
 		};
 		F2D1C3FD208E17B7003388A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E9FEA1ABEB11392EF88DD138 /* Pods-sampleApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = sampleApp/Info.plist;
@@ -643,7 +599,6 @@
 		};
 		F2D1C3FE208E17B7003388A2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 57973658C1567CE4094293DF /* Pods-sampleApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = sampleApp/Info.plist;

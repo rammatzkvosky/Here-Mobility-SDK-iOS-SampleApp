@@ -10,7 +10,6 @@ extension UIView {
     @discardableResult
     func fromNib<T>() -> T? where T:UIView {
 
-        //todo - check if static nib available via nibLoadableView protocol and replace this line, curr
         guard let nibName = String(describing: type(of: self)).components(separatedBy: ".").last else {
             return nil
         }
