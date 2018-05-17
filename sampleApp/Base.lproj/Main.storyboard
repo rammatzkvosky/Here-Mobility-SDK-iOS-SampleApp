@@ -141,7 +141,7 @@
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aEx-S2-BzT">
                                 <rect key="frame" x="0.0" y="617" width="375" height="50"/>
-                                <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" name="aquaMarine"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="goN-ki-vab"/>
                                 </constraints>
@@ -571,7 +571,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wdx-sR-6hb">
                                                     <rect key="frame" x="25" y="5" width="325" height="55"/>
-                                                    <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" name="aquaMarine"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                                     <state key="normal" title="Show Rides">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

@@ -76,7 +76,7 @@ extension RideDetailsViewController{
         // example of hereSDKDemandTransitOptions - optional
         let demandTransitOptions = HereSDKDemandTransitOptions(maxTransfers: NSNumber(value : 3), maxWalkingDistance: NSNumber(value : 2000), locale: nil)
 
-        return HereSDKDemandRideOffersRequest(offersWith: demandRoute, constraints: self.getBookingConstraints(), prebookPickupTime: self.bookNowCell.on ? Date() : self.prebookRideDate!, priceRange: priceRange, sortType: .unknown, passengerNote: "", transitOptions: demandTransitOptions )
+        return HereSDKDemandRideOffersRequest.rideOffers(with: demandRoute, constraints: self.getBookingConstraints(), prebookPickupTime: self.bookNowCell.on ? Date() : self.prebookRideDate!, priceRange: priceRange, sortType: .unknown, passengerNote: "", transitOptions: demandTransitOptions)
     }
 
     /// returns demand ride booking constraint object
