@@ -39,8 +39,8 @@ class GetRidesViewController : UIViewController{
 
     @IBOutlet weak var geocodeResultsTableView: UITableView!
 
-    internal var lastLocation : CLLocation?
-    static var londonLocation =  CLLocationCoordinate2D(latitude: 51.509865, longitude: -0.118092)
+    internal var locationInLondon : CLLocation?
+    static var londonCoordinate =  CLLocationCoordinate2D(latitude: 51.509865, longitude: -0.118092)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +48,7 @@ class GetRidesViewController : UIViewController{
         originTextView.delegate = self
         destinationTextView.delegate = self
 
-        self.lastLocation = CLLocation(latitude : GetRidesViewController.londonLocation.latitude, longitude : GetRidesViewController.londonLocation.longitude)
+        self.locationInLondon = CLLocation(latitude : GetRidesViewController.londonCoordinate.latitude, longitude : GetRidesViewController.londonCoordinate.longitude)
     }
 
     override func viewWillAppear(_ animated: Bool) {

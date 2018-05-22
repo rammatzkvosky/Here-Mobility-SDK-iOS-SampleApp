@@ -22,26 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // required - Configures the HereSDK and starts its services. This method should be called after the app is launched and before using HereSDK services.
         HereSDKManager.configure()
 
-        // required - Set user for sdk use
-        generateUserCredentialsWithUser(userId: "HereSDKUser", expiration: 230948092)
-
-        CLLocationManager().requestWhenInUseAuthorization()
-
-
         return true
-    }
-
-    func generateHash(appKey: String, userId: String, expiration:UInt32, key: String) -> String? {
-        return HMACGenerator.hmacSHA256(from: appKey, userId: userId, expiration: Int32(expiration), withKey: key)
-    }
-
-    func generateUserCredentialsWithUser(userId : String, expiration : UInt32){
-        if let infoDictionary = Bundle.main.infoDictionary{
-            if let appKey = infoDictionary["HereMobilitySDKAppId"] as? String, let appSecret = infoDictionary["HereMobilitySDKAppSecret"] as? String {
-                let hashString = generateHash(appKey: appKey, userId: userId, expiration: expiration, key: appSecret)
-                HereSDKManager.shared?.user = HereSDKUser(id: userId, expiration: Date(timeIntervalSince1970 : TimeInterval(expiration)), verificationHash: hashString!)
-            }
-        }
     }
 }
 

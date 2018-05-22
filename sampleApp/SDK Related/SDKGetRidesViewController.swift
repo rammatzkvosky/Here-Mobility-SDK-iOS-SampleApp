@@ -12,13 +12,13 @@ class SDKGetRidesViewController: GetRidesViewController {
         super.viewDidLoad()
 
         // optional - if not specified default coordinate is Berlin
-        self.mapView.centerCoordinate = GetRidesViewController.londonLocation;
+        self.mapView.centerCoordinate = GetRidesViewController.londonCoordinate;
         // optional - if not specified default zoom is 15.3999996
         self.mapView.zoom = 17;
         // required - map updates
         self.mapView.delegate = self;
-        // configured to simulate London location. Location improves geocoding results
-        mapView.showUserLocation(true)
+        // set self.mapView.showUserLocation(true) to show user location on map
+        // self.mapView.showUserLocation(true)
     }
 
     // example of adding annotation to map
@@ -31,14 +31,21 @@ extension GetRidesViewController {
 
     func getRides(){
         HereSDKDemandManager.shared.getRides(getHereSDKDemandRideQuery()) { [weak self] (result, error ) in
-            if result.ridesArray.count > 0{
-                print("Got \(result.ridesArray.count) rides from getRides")
-                self?.prebookedRides = result.ridesArray
-                self?.showFutureRidesButton.isHidden = false
+            if (error == nil){
+                if result.ridesArray.count > 0{
+                    print("Got \(result.ridesArray.count) rides from getRides")
+                    self?.prebookedRides = result.ridesArray
+                    self?.showFutureRidesButton.isHidden = false
+                }
+                else{
+                    print("Got 0 rides from getRides")
+                    self?.showFutureRidesButton.isHidden = true
+                }
             }
             else{
-                print("Got 0 rides from getRides")
-                self?.showFutureRidesButton.isHidden = true
+                if (error?.code == -1){ //user authentication required
+                    self?.showUserNameMissingAlert()
+                }
             }
         }
     }
@@ -49,9 +56,9 @@ extension GetRidesViewController {
     }
 
     func requestGeocodeResults(query: String) {
-        guard let lastLocation = lastLocation else { return }
+        guard let locationInLondon = locationInLondon else { return }
         mapService.geocodeQuery(query,
-                                forlocation: lastLocation,
+                                forlocation: locationInLondon,
                                 resultType: .place,
                                 countryCode: "") { [weak self] (results, error) in
                                     if error == nil {
@@ -101,6 +108,36 @@ extension GetRidesViewController {
             }
         }
     }
+
+    func showUserNameMissingAlert(){
+        let alertViewController = UIAlertController(title: "HereSDK require credentials", message: "Please enter user name", preferredStyle: UIAlertControllerStyle.alert)
+        alertViewController.addTextField { (textField) in
+            textField.placeholder = "user name"
+        }
+        let action = UIAlertAction(title: "OK", style: .default) { (alertAction) in
+            let textField = alertViewController.textFields![0] as UITextField
+            if let username = textField.text{
+                self.generateUserCredentialsWithUser(userId: username, expiration: 230948092)
+            }
+        }
+        alertViewController.addAction(action)
+        self.present(alertViewController, animated: true, completion: nil)
+
+    }
+
+    private func generateHash(appKey: String, userId: String, expiration:UInt32, key: String) -> String? {
+        return HMACGenerator.hmacSHA256(from: appKey, userId: userId, expiration: Int32(expiration), withKey: key)
+    }
+
+    private func generateUserCredentialsWithUser(userId : String, expiration : UInt32){
+        if let infoDictionary = Bundle.main.infoDictionary{
+            if let appKey = infoDictionary["HereMobilitySDKAppId"] as? String, let appSecret = infoDictionary["HereMobilitySDKAppSecret"] as? String {
+                let hashString = generateHash(appKey: appKey, userId: userId, expiration: expiration, key: appSecret)
+                HereSDKManager.shared?.user = HereSDKUser(id: userId, expiration: Date(timeIntervalSince1970 : TimeInterval(expiration)), verificationHash: hashString!)
+                getRides()
+            }
+        }
+    }
 }
 
 extension SDKGetRidesViewController : HereSDKMapViewDelegate{
@@ -118,7 +155,7 @@ extension SDKGetRidesViewController : HereSDKMapViewDelegate{
     ///   - mapView: HereSDKMapView
     ///   - userLocation: userLocationAnnotation that specifies user location
     func mapView(_ mapView: HereSDKMapView, didUpdate userLocationAnnotation: HereSDKUserLocationAnnotation) {
-//        lastLocation = CLLocation(latitude:  userLocationAnnotation.coordinate.latitude, longitude: userLocationAnnotation.coordinate.longitude)
+        // handle user location update
     }
 
     ///  used to set annotation layout after adding annotation to map

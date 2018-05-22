@@ -18,6 +18,7 @@
 		F27FDF9820A32FE400FF9634 /* SDKRideDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27FDF9720A32FE400FF9634 /* SDKRideDetailsViewController.swift */; };
 		F27FDF9A20A3368800FF9634 /* SDKRideOffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27FDF9920A3368800FF9634 /* SDKRideOffersViewController.swift */; };
 		F27FDF9C20A33E3C00FF9634 /* SDKRideStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27FDF9B20A33E3C00FF9634 /* SDKRideStatusViewController.swift */; };
+		F2A482C020B4759A0021D454 /* ErrorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A482BF20B4759A0021D454 /* ErrorExtensions.swift */; };
 		F2C24A06209F066F0081FE22 /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C24A04209F066F0081FE22 /* UIImageViewExtensions.swift */; };
 		F2C24A07209F066F0081FE22 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C24A05209F066F0081FE22 /* DateExtensions.swift */; };
 		F2D1C3EE208E17B7003388A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D1C3ED208E17B7003388A2 /* AppDelegate.swift */; };
@@ -68,6 +69,7 @@
 		F27FDF9720A32FE400FF9634 /* SDKRideDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDKRideDetailsViewController.swift; sourceTree = "<group>"; };
 		F27FDF9920A3368800FF9634 /* SDKRideOffersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDKRideOffersViewController.swift; sourceTree = "<group>"; };
 		F27FDF9B20A33E3C00FF9634 /* SDKRideStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDKRideStatusViewController.swift; sourceTree = "<group>"; };
+		F2A482BF20B4759A0021D454 /* ErrorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorExtensions.swift; sourceTree = "<group>"; };
 		F2C24A04209F066F0081FE22 /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
 		F2C24A05209F066F0081FE22 /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		F2C63C6120A1C9490039A311 /* sampleApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "sampleApp-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				F2D1C4342091EE2E003388A2 /* UIColor+Additions.swift */,
 				F2D1C4332091EE2E003388A2 /* UIFont+Additions.swift */,
 				F2D1C4352091EE2E003388A2 /* UserDefaultsExtensions.swift */,
+				F2A482BF20B4759A0021D454 /* ErrorExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 				F2F92C0820A341B3008EA19D /* RideDetailsCell.swift in Sources */,
 				F27FDF9C20A33E3C00FF9634 /* SDKRideStatusViewController.swift in Sources */,
 				F26B003E209672F2001F269E /* RideStatusViewController.swift in Sources */,
+				F2A482C020B4759A0021D454 /* ErrorExtensions.swift in Sources */,
 				F2D1C4382091EE2E003388A2 /* UserDefaultsExtensions.swift in Sources */,
 				F27FDF9820A32FE400FF9634 /* SDKRideDetailsViewController.swift in Sources */,
 				F2C24A07209F066F0081FE22 /* DateExtensions.swift in Sources */,
