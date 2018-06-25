@@ -42,13 +42,13 @@ $ pod update
 Here is an overview of the workflow for booking a ride and monitoring its progress, using the HERE Mobility SDK.
 Click on a step name to go to its corresponding code example.
 
-|Step | Description
-|:----|:------------
-|[Forward geocoding](#forward-geocoding) | Retrieve the geo-location for an address or place name
-|[Get the ride route](#get-ride-routes) | Get the ride's route, based on its start and end locations
-|[Get ride offers](#get-ride-offers) | Get ride offers from public or private ride suppliers
-|[Book a ride](#book-a-ride)| Book one of the ride offers received
-|[Register for ride updates](#register-for-ride-updates) | Register for updates about the ride's progress
+ |Step | Description
+ |:----|:------------
+ |[Forward geocoding](#forward-geocoding) | Retrieve the geo-location for an address or place name
+ |[Get the ride route](#get-ride-routes) | Get the ride's route, based on its start and end locations
+ |[Get ride offers](#get-ride-offers) | Get ride offers from public or private ride suppliers
+ |[Book a ride](#book-a-ride)| Book one of the ride offers received
+ |[Register for ride updates](#register-for-ride-updates) | Register for updates about the ride's progress
 
 ### Forward Geocoding
 
@@ -63,19 +63,19 @@ The following code snippet shows how to query for a geocoding result, based on a
 
 ```swift
 func requestGeocodeResults(query: String) {
-guard let lastLocation = lastLocation else { return }
-mapService.geocodeQuery(query,
-forlocation: lastLocation,
-resultType: .place,
-countryCode: "") { [weak self] (results, error) in
-if error != nil {
-// handle error
-}
-else {
-// handle geocode result
-}
-}
-}
+        guard let lastLocation = lastLocation else { return }
+        mapService.geocodeQuery(query,
+                                forlocation: lastLocation,
+                                resultType: .place,
+                                countryCode: "") { [weak self] (results, error) in
+                                    if error != nil {
+                                    	// handle error
+                                    }
+                                    else {
+                                    	// handle geocode result
+                                    }
+        }
+    }
 ```
 
 ### Get Ride Routes
@@ -87,21 +87,21 @@ The following code snippet shows how to retrieve routes with the given start and
 
 ```swift
 if let originGeocodeResult = self.originGeocodeResult, let destinationGeocodeResult = self.destinationGeocodeResult{
-let startLocation = CLLocation(latitude: originGeocodeResult.center.latitude , longitude: originGeocodeResult.center.longitude)
-let endLocation = CLLocation(latitude: destinationGeocodeResult.center.latitude , longitude: destinationGeocodeResult.center.longitude{
-if let routeRequest = HereSDKRouteRequest(points: [startLocation, endLocation]){
-mapService.getRoutesWith(routeRequest, andHandler: {  [weak self] routes, error in
-if (error == nil){
-if let firstRoute = routes?.first{
-// handle route
-}
-}
-else{
-// handle error
-}
-})
-}
-}
+	let startLocation = CLLocation(latitude: originGeocodeResult.center.latitude , longitude: originGeocodeResult.center.longitude)
+	let endLocation = CLLocation(latitude: destinationGeocodeResult.center.latitude , longitude: destinationGeocodeResult.center.longitude{
+            if let routeRequest = HereSDKRouteRequest(points: [startLocation, endLocation]){
+                mapService.getRoutesWith(routeRequest, andHandler: {  [weak self] routes, error in
+                    if (error == nil){
+                        if let firstRoute = routes?.first{
+                        	// handle route
+                        }
+                    }
+                    else{
+                    	// handle error
+                    }
+                })
+            }
+        }
 
 ```
 
@@ -115,51 +115,51 @@ The HERE SDK Demand Kit allows you to request ride offers based on various param
 
 ```swift
 mapService.getAddressData(withAddressId: originAddressId, andHandler: { (addressData, error) in
-if (error != nil){
-// handle error
-}
-else{
-// handle address data
-}
-})
+            if (error != nil){
+            	// handle error
+            }
+            else{
+            	// handle address data
+            }
+        })
 ```
 
 #### Create ride route based on pickup and destination locations
 
 ```swift
 let originDemandLocation = HereSDKDemandLocation(location: originCLLocation,
-address: originAddressData,
-freeText: nil)
+						  address: originAddressData,
+						 freeText: nil)
 let destinationDemandLocation = HereSDKDemandLocation(location: destinationCLLocation,
-address: destinationAddressData,
-freeText: nil)
+ 	 					       address: destinationAddressData,
+						      freeText: nil)
 return HereSDKDemandRoute(pickupLocation: originDemandLocation,
-destinationLocation: destinationDemandLocation)
+		     destinationLocation: destinationDemandLocation)
 ```
 
 #### Request ride offers based on ride route
 
 ```swift
 HereSDKDemandRideOffersRequest.rideOffers(with: demandRoute,
-constraints: nil,
-prebookPickupTime: nil,
-priceRange: nil,
-sortType: .unknown,
-passengerNote: "",
-transitOptions: demandTransitOptions)
+				 constraints: nil,
+				 prebookPickupTime: nil,
+				 priceRange: nil,
+				 sortType: .unknown,
+				 passengerNote: "",
+				 transitOptions: demandTransitOptions)
 ```
 
 ####  Get ride offers based on a ride request object
 
 ```swift
 HereSDKDemandManager.shared.requestRide(rideRequest) { [weak self] offers, error in
-if (error != nil){
-// handle error
-}
-if let offers = offers{
-// handle offers
-}
-}
+                if (error != nil){
+                    // handle error
+                }
+                if let offers = offers{
+                    // handle offers
+                }
+            }
 ```
 
 
@@ -168,11 +168,11 @@ if let offers = offers{
 
 ```swift
 switch offer.getTransitType() {
-case .taxi:
-// handle demand ride offer
-case .publicTransport:
-// handle public transport
-}
+        case .taxi:
+            // handle demand ride offer
+        case .publicTransport:
+           // handle public transport
+        }
 ```
 
 ### Book a Ride
@@ -182,25 +182,25 @@ Once you have a ride offer, you can book the ride.
 #### Create passenger details object
 
 ```swift
-HereSDKDemandPassenger(name: "Passenger name",
-phoneNumber: "+9721234567",
-photoUrl: "",
-email: "")
+ HereSDKDemandPassenger(name: "Passenger name",
+                        phoneNumber: "+9721234567",
+                        photoUrl: "",
+		        email: "")
 ```
 
 #### Book a ride based on a ride offer and passenger details
 
 ```swift
 let demandRideRequest = HereSDKDemandRideRequest(offerId: rideOffer.offerId,
-passengerDetails: passengerDetails)
-HereSDKDemandManager.shared.createRide(with: demandRideRequest) { [weak self] ride, error in
-if error != nil {
-//handle error
-}
-else{
-//handle booked ride
-}
-}
+                                        passengerDetails: passengerDetails)
+        HereSDKDemandManager.shared.createRide(with: demandRideRequest) { [weak self] ride, error in
+            if error != nil {
+		//handle error
+            }
+            else{
+            	//handle booked ride
+            }
+        }
 ```
 
 #### Register for ride updates
@@ -211,22 +211,22 @@ The HERE SDK Demand Kit allows you register for updates on a ride's progress, in
 
 
 ```swift
-HereSDKDemandManager.shared.registerForRidesUpdates(with: self)
+ HereSDKDemandManager.shared.registerForRidesUpdates(with: self)
 ```
 
 ```swift
 extension UIViewController: HereSDKDemandRidesUpdatesDelegate {
 func didReceiveUpdate(_ statusLog: HereSDKDemandRideStatusLog!, for ride: HereSDKDemandRide!) {
-// handle ride updates stasusses
+	// handle ride updates statuses
 }
 
 func didReceive(_ location: HereSDKDemandRideLocation!, for ride: HereSDKDemandRide!) {
-//handle ride location update
+ 	//handle ride location update
 }
 
-func didReceiveUpdateError(_ error: Error!, forRideId rideId: String!) {
-// handle error
-}
+ func didReceiveUpdateError(_ error: Error!, forRideId rideId: String!) {
+ 	// handle error
+ }
 ```
 
 ## Support
