@@ -117,7 +117,11 @@ extension GetRidesViewController {
         let action = UIAlertAction(title: "OK", style: .default) { (alertAction) in
             let textField = alertViewController.textFields![0] as UITextField
             if let username = textField.text{
-                self.generateUserCredentialsWithUser(userId: username, expiration: 230948092)
+                let userExpirationInterval: Int32 = 60 * 60 * 24 * 365 // 1 year
+                let date = Date().addingTimeInterval(TimeInterval(userExpirationInterval))
+
+                // Generating user token with expiration time of one year from the current date.
+                self.generateUserCredentialsWithUser(userId: username, expiration: UInt32(date.timeIntervalSince1970))
             }
         }
         alertViewController.addAction(action)
@@ -163,15 +167,16 @@ extension SDKGetRidesViewController : HereSDKMapViewDelegate{
     /// - Parameters:
     ///   - mapView: HereSDKMapView
     ///   - annotation: HereSDKAnnotation
-    /// - Returns: HereSDKPointAnnotationStyle that can customize annotation
-    func mapView(_ mapView: HereSDKMapView, styleFor annotation: HereSDKAnnotation) -> HereSDKPointAnnotationStyle? {
-
-        var annotationStyle: HereSDKPointAnnotationStyle? = nil
+    /// - Returns: HereSDKAnnotationStyle that can customize annotation
+    func mapView(_ mapView: HereSDKMapView, styleFor annotation: HereSDKAnnotation) -> HereSDKAnnotationStyle? {
         if annotation === originAnnotation {
-            annotationStyle = HereSDKPointAnnotationStyle(image: #imageLiteral(resourceName: "CurrentLocation"), anchor: .center)
+            return HereSDKImageAnnotationStyle(image: #imageLiteral(resourceName: "CurrentLocation"))
         } else if annotation === destinationAnnotation {
-            annotationStyle = HereSDKPointAnnotationStyle(image: #imageLiteral(resourceName: "Destination"), anchor: .top)
+            let annotationStyle = HereSDKImageAnnotationStyle(image: #imageLiteral(resourceName: "Destination"))
+            annotationStyle.anchor = .top
+            return annotationStyle
         }
-        return annotationStyle
+
+        return nil
     }
 }

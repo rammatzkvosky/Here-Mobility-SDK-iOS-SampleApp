@@ -43,6 +43,8 @@
 		F2F92C0B20A341B3008EA19D /* RideDetailsTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F92C0620A341B3008EA19D /* RideDetailsTextFieldCell.swift */; };
 		F2F92C0C20A341B3008EA19D /* RideDetailsSectionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F92C0720A341B3008EA19D /* RideDetailsSectionHeaderCell.swift */; };
 		FD6E21AD232E3FAF9136039F /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		FF4C168B20E28AAB002B29C2 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4C168A20E28AAB002B29C2 /* UIViewControllerExtensions.swift */; };
+		FF4C168D20E28C7D002B29C2 /* HereSDKDemandCancellationInfo+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4C168C20E28C7D002B29C2 /* HereSDKDemandCancellationInfo+Additions.swift */; };
 		FF705EDC20A0AA8200774BB5 /* sampleAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF705EDB20A0AA8200774BB5 /* sampleAppTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +98,8 @@
 		F2F92C0520A341B3008EA19D /* RideDetailsSwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideDetailsSwitchCell.swift; sourceTree = "<group>"; };
 		F2F92C0620A341B3008EA19D /* RideDetailsTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideDetailsTextFieldCell.swift; sourceTree = "<group>"; };
 		F2F92C0720A341B3008EA19D /* RideDetailsSectionHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideDetailsSectionHeaderCell.swift; sourceTree = "<group>"; };
+		FF4C168A20E28AAB002B29C2 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
+		FF4C168C20E28C7D002B29C2 /* HereSDKDemandCancellationInfo+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HereSDKDemandCancellationInfo+Additions.swift"; sourceTree = "<group>"; };
 		FF705EDB20A0AA8200774BB5 /* sampleAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sampleAppTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,6 +161,7 @@
 		F27FDF9420A31D4000FF9634 /* SDK Related */ = {
 			isa = PBXGroup;
 			children = (
+				FF4C168920E28A6A002B29C2 /* Extensions */,
 				F27FDF9520A31D8200FF9634 /* SDKGetRidesViewController.swift */,
 				F27FDF9720A32FE400FF9634 /* SDKRideDetailsViewController.swift */,
 				F27FDF9920A3368800FF9634 /* SDKRideOffersViewController.swift */,
@@ -218,6 +223,7 @@
 				F2D1C4332091EE2E003388A2 /* UIFont+Additions.swift */,
 				F2D1C4352091EE2E003388A2 /* UserDefaultsExtensions.swift */,
 				F2A482BF20B4759A0021D454 /* ErrorExtensions.swift */,
+				FF4C168A20E28AAB002B29C2 /* UIViewControllerExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -275,6 +281,14 @@
 			path = RideDetailsTableViewCells;
 			sourceTree = "<group>";
 		};
+		FF4C168920E28A6A002B29C2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FF4C168C20E28C7D002B29C2 /* HereSDKDemandCancellationInfo+Additions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -287,7 +301,6 @@
 				F2D1C3E7208E17B7003388A2 /* Frameworks */,
 				F2D1C3E8208E17B7003388A2 /* Resources */,
 				8DEF50B30EB7E15E551FE364 /* [CP] Embed Pods Frameworks */,
-				3FC2DB969EF3FC4ABB5E5CE4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -349,21 +362,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3FC2DB969EF3FC4ABB5E5CE4 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-sampleApp/Pods-sampleApp-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		8DEF50B30EB7E15E551FE364 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -372,9 +370,9 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-sampleApp/Pods-sampleApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
-				"${PODS_ROOT}/HereSDKCoreKit/HereSDKCoreKit.framework",
-				"${PODS_ROOT}/HereSDKDemandKit/HereSDKDemandKit.framework",
-				"${PODS_ROOT}/HereSDKMapKit/HereSDKMapKit.framework",
+				"${PODS_ROOT}/HereSDKCoreKit/Frameworks/HereSDKCoreKit.framework",
+				"${PODS_ROOT}/HereSDKDemandKit/Frameworks/HereSDKDemandKit.framework",
+				"${PODS_ROOT}/HereSDKMapKit/Frameworks/HereSDKMapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
@@ -415,7 +413,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -441,7 +439,9 @@
 				F2F92C0A20A341B3008EA19D /* RideDetailsSwitchCell.swift in Sources */,
 				F2D1C4482094FEE4003388A2 /* RideOfferTableCell.swift in Sources */,
 				F2F92C0820A341B3008EA19D /* RideDetailsCell.swift in Sources */,
+				FF4C168B20E28AAB002B29C2 /* UIViewControllerExtensions.swift in Sources */,
 				F27FDF9C20A33E3C00FF9634 /* SDKRideStatusViewController.swift in Sources */,
+				FF4C168D20E28C7D002B29C2 /* HereSDKDemandCancellationInfo+Additions.swift in Sources */,
 				F26B003E209672F2001F269E /* RideStatusViewController.swift in Sources */,
 				F2A482C020B4759A0021D454 /* ErrorExtensions.swift in Sources */,
 				F2D1C4382091EE2E003388A2 /* UserDefaultsExtensions.swift in Sources */,

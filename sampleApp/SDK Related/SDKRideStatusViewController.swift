@@ -18,9 +18,8 @@ extension SDKRideStatusViewController: HereSDKDemandRidesUpdatesDelegate {
 
     // updates about ride status
     func didReceiveUpdate(_ statusLog: HereSDKDemandRideStatusLog!, for ride: HereSDKDemandRide!) {
-        guard let rideId = ride.rideId else { return }
-        if self.ride?.rideId == rideId{
-            debugPrint("SDK Ride \(rideId) updated status: \(statusLog.currentStatus.rawValue) at \(statusLog.lastUpdateTime)")
+        if self.ride?.rideId == ride.rideId {
+            debugPrint("SDK Ride \(ride.rideId) updated status: \(statusLog.currentStatus.rawValue) at \(statusLog.lastUpdateTime)")
             updateStatusesArray(statusLog: statusLog)
             self.updateActionButton(status: statusLog.currentStatus)
             self.updateUI(for: ride)
@@ -30,8 +29,7 @@ extension SDKRideStatusViewController: HereSDKDemandRidesUpdatesDelegate {
     // updates about driver location once assigned
     func didReceive(_ location: HereSDKDemandRideLocation!, for ride: HereSDKDemandRide!) {
         debugPrint("SDK Ride \(ride.rideId) updated location: \(location.vehicleLocation.coordinate)")
-        guard let rideId = ride.rideId else { return }
-        if self.ride?.rideId == rideId{
+        if self.ride?.rideId == ride.rideId{
             self.updateUI(for: location)
         }
     }

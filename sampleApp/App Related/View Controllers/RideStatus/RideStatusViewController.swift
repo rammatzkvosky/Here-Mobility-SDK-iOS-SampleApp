@@ -74,9 +74,10 @@ class RideStatusViewController: UIViewController {
     // MARK: - Utility functions
 
     private func updatePhoneNumber(for ride: HereSDKDemandRide) {
-        phoneNumber = ride.driver.phoneNumber
-        if ride.driver.phoneNumber.isEmpty {
-            phoneNumber = ride.supplier.phoneNumber
+        phoneNumber = ride.driver?.phoneNumber
+
+        if (phoneNumber ?? "").isEmpty {
+            phoneNumber = ride.supplier?.phoneNumber
         }
     }
 
@@ -104,7 +105,6 @@ class RideStatusViewController: UIViewController {
     }
 
     internal func updateUI(for ride: HereSDKDemandRide) {
-        let driverName = ride.driver.name.isEmpty ? "Your driver" : ride.driver.name
 
         // until ride is accepted - ride.supplier is nil (same when ride is rejected)
         if let supplier = ride.supplier {
@@ -112,11 +112,15 @@ class RideStatusViewController: UIViewController {
             supplierImage.setImage(url: URL(string: supplier.logoURL))
         }
         // example of generated price range
-        if let pricesRange = ride.bookingEstimatedPrice.range{
+        if let pricesRange = ride.bookingEstimatedPrice?.range {
             tripPrice.text = "\(pricesRange.lowerBound) - \(pricesRange.upperBound) $"
         }
-        driverNameLabel.text = driverName
-        driverImage.setImage(url: URL(string: ride.driver.photoURL))
+
+        if let driver = ride.driver {
+            driverNameLabel.text = driver.name.isEmpty ? "Your driver" : driver.name
+            driverImage.setImage(url: URL(string: (driver.photoURL ?? "")))
+        }
+
         carDetailsLabel.text = carDetails(for: ride)
     }
 
@@ -187,14 +191,21 @@ class RideStatusViewController: UIViewController {
     internal func cancelRide() {
         guard let ride = ride else { return }
         let cancelRequest = HereSDKDemandCancelRideRequest.cancelRide(withRideId: ride.rideId, cancelReason: "")
-        HereSDKDemandManager.shared.cancelRide(with: cancelRequest) { [weak self] error in
+        HereSDKDemandManager.shared.cancelRide(with: cancelRequest) { [weak self] (info, error) in
             if error != nil {
 
             } else {
                 if let rideID = self?.ride?.rideId{
                     print ("canceled ride ID  \(rideID)")
                 }
-                self?.dismiss()
+
+                if let info = info {
+                    self?.showDismissableAlert(title: "Cancellation info", message: info.cancellationInfo) {
+                        self?.dismiss()
+                    }
+                } else {
+                    self?.dismiss()
+                }
             }
         }
     }

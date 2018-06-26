@@ -34,8 +34,8 @@ class FutureRideTableViewCell: BaseRideTableViewCell {
 
         supplierName.text = supplier.englishName
         supplierImage.setImage(url: URL(string: supplier.logoURL))
-        offerETALabel.text = ride.requestedPickupTime?.justTime ?? "N/A"
-        if let priceRange = ride.bookingEstimatedPrice.range{
+        offerETALabel.text = ride.prebookPickupTime?.justTime ?? "N/A"
+        if let priceRange = ride.bookingEstimatedPrice?.range {
             offerPriceLabel.text = "\(priceRange.lowerBound) - \(priceRange.upperBound)$"
         }
     }

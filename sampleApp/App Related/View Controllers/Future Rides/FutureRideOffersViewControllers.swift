@@ -46,11 +46,15 @@ extension FutureRideOffersViewControllers: UITableViewDelegate, UITableViewDataS
 
 extension FutureRideOffersViewControllers: FutureRideTableCellDelegate {
 
-   func futureRideCell(_ cell: FutureRideTableViewCell, didCancelRide ride: HereSDKDemandRide) {
+    func futureRideCell(_ cell: FutureRideTableViewCell, didCancelRide ride: HereSDKDemandRide) {
         let cancelRequest = HereSDKDemandCancelRideRequest.cancelRide(withRideId: ride.rideId, cancelReason: "")
-        HereSDKDemandManager.shared.cancelRide(with: cancelRequest) { [weak self] error in
+        HereSDKDemandManager.shared.cancelRide(with: cancelRequest) { [weak self] (info, error) in
             if error != nil {
 
+            } else if let info = info {
+                self?.showDismissableAlert(title: "Cancellation info", message: info.cancellationInfo) {
+                    self?.navigationController?.popToRootViewController(animated: true)
+                }
             } else {
                 self?.navigationController?.popToRootViewController(animated: true)
             }
