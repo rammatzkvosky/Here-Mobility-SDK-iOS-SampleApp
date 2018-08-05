@@ -28,12 +28,10 @@ class FutureRideTableViewCell: BaseRideTableViewCell {
     }
 
     private func updateUI(for ride: HereSDKDemandRide) {
-        guard let supplier = ride.supplier else {
-            return
+        supplierName.text = ride.supplier.englishName
+        if let _logoURL = ride.supplier.logoURL {
+            supplierImage.setImage(url: URL(string: _logoURL))
         }
-
-        supplierName.text = supplier.englishName
-        supplierImage.setImage(url: URL(string: supplier.logoURL))
         offerETALabel.text = ride.prebookPickupTime?.justTime ?? "N/A"
         if let priceRange = ride.bookingEstimatedPrice?.range {
             offerPriceLabel.text = "\(priceRange.lowerBound) - \(priceRange.upperBound)$"

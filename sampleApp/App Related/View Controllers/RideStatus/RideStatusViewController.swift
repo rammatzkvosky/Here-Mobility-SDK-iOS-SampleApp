@@ -77,7 +77,7 @@ class RideStatusViewController: UIViewController {
         phoneNumber = ride.driver?.phoneNumber
 
         if (phoneNumber ?? "").isEmpty {
-            phoneNumber = ride.supplier?.phoneNumber
+            phoneNumber = ride.supplier.phoneNumber
         }
     }
 
@@ -106,11 +106,11 @@ class RideStatusViewController: UIViewController {
 
     internal func updateUI(for ride: HereSDKDemandRide) {
 
-        // until ride is accepted - ride.supplier is nil (same when ride is rejected)
-        if let supplier = ride.supplier {
-            supplierName.text = supplier.englishName
-            supplierImage.setImage(url: URL(string: supplier.logoURL))
+        supplierName.text = ride.supplier.englishName
+        if let _logoURL = ride.supplier.logoURL {
+            supplierImage.setImage(url: URL(string: _logoURL))
         }
+
         // example of generated price range
         if let pricesRange = ride.bookingEstimatedPrice?.range {
             tripPrice.text = "\(pricesRange.lowerBound) - \(pricesRange.upperBound) $"

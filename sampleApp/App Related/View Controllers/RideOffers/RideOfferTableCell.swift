@@ -50,9 +50,11 @@ class RideOfferTableCell: BaseRideTableViewCell {
 
     private func updateDriverOfferUI(for offer : HereSDKDemandTaxiRideOffer){
         supplierName.text = offer.supplier.englishName
-        supplierImage.setImage(url: URL(string: offer.supplier.logoURL))
+        if let _logoURL = offer.supplier.logoURL {
+            supplierImage.setImage(url: URL(string: _logoURL))
+        }
         offerETALabel.text = offer.estimatedPickupTime?.justTime ?? "N/A"
-        if let priceRange = offer.estimatedPriceRange?.range{
+        if let priceRange = offer.estimatedPrice?.range{
             offerPriceLabel.text = "\(priceRange.lowerBound) - \(priceRange.upperBound)$"
         }
         bookButton.setTitle("Book", for: .normal)
