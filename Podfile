@@ -8,6 +8,6 @@ target 'sampleApp' do
   use_frameworks!
   inhibit_all_warnings!
 
-  pod 'HereSDKDemandKit', '~> 1.0.6'
-  pod 'HereSDKMapKit', '~> 1.0.6'
+  pod 'HereSDKDemandKit', '~> 1.0.7'
+  pod 'HereSDKMapKit', '~> 1.0.7'
 end
