@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		91D1B3A021329980003DFB17 /* RideStatusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D1B39F21329980003DFB17 /* RideStatusService.swift */; };
+		91D1B3A221329A26003DFB17 /* SDKService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D1B3A121329A26003DFB17 /* SDKService.swift */; };
 		F2639FBA20A8857200700381 /* FutureRideOffersViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2639FB920A8857200700381 /* FutureRideOffersViewControllers.swift */; };
 		F2639FCD20A9EC7300700381 /* BaseRideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2639FCC20A9EC7300700381 /* BaseRideTableViewCell.swift */; };
 		F2639FCF20A9EE5C00700381 /* FutureRideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2639FCE20A9EE5C00700381 /* FutureRideTableViewCell.swift */; };
@@ -59,6 +61,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		91D1B39F21329980003DFB17 /* RideStatusService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideStatusService.swift; sourceTree = "<group>"; };
+		91D1B3A121329A26003DFB17 /* SDKService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDKService.swift; sourceTree = "<group>"; };
 		F2639FB920A8857200700381 /* FutureRideOffersViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureRideOffersViewControllers.swift; sourceTree = "<group>"; };
 		F2639FCC20A9EC7300700381 /* BaseRideTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRideTableViewCell.swift; sourceTree = "<group>"; };
 		F2639FCE20A9EE5C00700381 /* FutureRideTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureRideTableViewCell.swift; sourceTree = "<group>"; };
@@ -166,6 +170,8 @@
 				F27FDF9720A32FE400FF9634 /* SDKRideDetailsViewController.swift */,
 				F27FDF9920A3368800FF9634 /* SDKRideOffersViewController.swift */,
 				F27FDF9B20A33E3C00FF9634 /* SDKRideStatusViewController.swift */,
+				91D1B39F21329980003DFB17 /* RideStatusService.swift */,
+				91D1B3A121329A26003DFB17 /* SDKService.swift */,
 			);
 			path = "SDK Related";
 			sourceTree = "<group>";
@@ -434,6 +440,7 @@
 				F2D1C43E2091EE3B003388A2 /* NumberPickerView.swift in Sources */,
 				F2639FD820AB0CF800700381 /* HMACGenerator.m in Sources */,
 				F27FDF9620A31D8200FF9634 /* SDKGetRidesViewController.swift in Sources */,
+				91D1B3A221329A26003DFB17 /* SDKService.swift in Sources */,
 				F2F92C0920A341B3008EA19D /* RideDetailsNumberPickerCell.swift in Sources */,
 				F27FDF9A20A3368800FF9634 /* SDKRideOffersViewController.swift in Sources */,
 				F2F92C0A20A341B3008EA19D /* RideDetailsSwitchCell.swift in Sources */,
@@ -456,6 +463,7 @@
 				F2D1C4422091F5AC003388A2 /* UIViewExtensions.swift in Sources */,
 				F2C24A06209F066F0081FE22 /* UIImageViewExtensions.swift in Sources */,
 				F2D1C4372091EE2E003388A2 /* UIColor+Additions.swift in Sources */,
+				91D1B3A021329980003DFB17 /* RideStatusService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

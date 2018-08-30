@@ -211,7 +211,6 @@ class RideStatusViewController: UIViewController {
     }
 
     private func dismiss() {
-        HereSDKDemandManager.shared.unregisterForRidesUpdates()
         navigationController?.popToRootViewController(animated: true)
     }
 

@@ -19,6 +19,13 @@ class SDKGetRidesViewController: GetRidesViewController {
         self.mapView.delegate = self;
         // set self.mapView.showUserLocation(true) to show user location on map
         // self.mapView.showUserLocation(true)
+
+        if HereSDKManager.shared?.user == nil {
+            self.showUserNameMissingAlert()
+        } else {
+            _ = RideStatusServiceImpl.shared()
+        }
+
     }
 
     // example of adding annotation to map
@@ -40,11 +47,6 @@ extension GetRidesViewController {
                 else{
                     print("Got 0 rides from getRides")
                     self?.showFutureRidesButton.isHidden = true
-                }
-            }
-            else{
-                if (error?.code == -1){ //user authentication required
-                    self?.showUserNameMissingAlert()
                 }
             }
         }
@@ -122,6 +124,7 @@ extension GetRidesViewController {
 
                 // Generating user token with expiration time of one year from the current date.
                 self.generateUserCredentialsWithUser(userId: username, expiration: UInt32(date.timeIntervalSince1970))
+                _ = RideStatusServiceImpl.shared()
             }
         }
         alertViewController.addAction(action)
