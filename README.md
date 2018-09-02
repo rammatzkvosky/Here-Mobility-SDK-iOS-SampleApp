@@ -179,6 +179,11 @@ switch offer.getTransitType() {
 
 Once you have a ride offer, you can book the ride.
 
+#### Start ride status updates 
+```swift
+ RideStatusServiceImpl.shared()
+```
+
 #### Create passenger details object
 
 ```swift
@@ -211,22 +216,18 @@ The HERE SDK Demand Kit allows you register for updates on a ride's progress, in
 
 
 ```swift
- HereSDKDemandManager.shared.registerForRidesUpdates(with: self)
+ RideStatusServiceImpl.shared().addObserver(self, for: rideId)
 ```
 
 ```swift
-extension UIViewController: HereSDKDemandRidesUpdatesDelegate {
-func didReceiveUpdate(_ statusLog: HereSDKDemandRideStatusLog!, for ride: HereSDKDemandRide!) {
+extension SDKRideStatusViewController: RideStatusObserver {
+func didUpdateStatus(for ride: HereSDKDemandRide) {
 	// handle ride updates statuses
 }
 
-func didReceive(_ location: HereSDKDemandRideLocation!, for ride: HereSDKDemandRide!) {
+func didUpdateLocation(_ location: HereSDKDemandRideLocation, for ride: HereSDKDemandRide) {
  	//handle ride location update
 }
-
- func didReceiveUpdateError(_ error: Error!, forRideId rideId: String!) {
- 	// handle error
- }
 ```
 
 ## Support
