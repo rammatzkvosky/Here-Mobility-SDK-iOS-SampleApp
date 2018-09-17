@@ -375,7 +375,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-sampleApp/Pods-sampleApp-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl.framework",
 				"${PODS_ROOT}/HereSDKCoreKit/Frameworks/HereSDKCoreKit.framework",
 				"${PODS_ROOT}/HereSDKDemandKit/Frameworks/HereSDKDemandKit.framework",
 				"${PODS_ROOT}/HereSDKMapKit/Frameworks/HereSDKMapKit.framework",
