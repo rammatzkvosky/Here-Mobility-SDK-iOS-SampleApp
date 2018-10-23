@@ -145,7 +145,14 @@ extension GetRidesViewController {
     private func verifyPhoneNumberWith(number: String){
         HereSDKManager.shared?.sendVerificationSMS(number, withHandler: { [weak self] (error) in
             if let error = error{
-                self?.showResendVerificationSmsAlert(message: error.localizedDescription)
+                switch error.code{
+                case HereSDKPhoneVerificationError.sdkInvalidPhoneNumberErr.rawValue,
+                    HereSDKPhoneVerificationError.sdksmsProviderErr.rawValue,
+                    HereSDKPhoneVerificationError.sdkInternalErr.rawValue:
+                    self?.showResendVerificationSmsAlert(message: error.localizedDescription)
+                default:
+                    self?.showVerificationDataMissingAlert()
+                }
             }
             else{
                 self?.showEnterVerificationCodeAlert(withMessage: nil, phoneNumber: number)
