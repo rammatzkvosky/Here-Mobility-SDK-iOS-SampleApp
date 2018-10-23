@@ -11,6 +11,10 @@ class SDKGetRidesViewController: GetRidesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        guard let hereSDKmanager = HereSDKManager.shared else {
+            return;
+        }
+
         // optional - if not specified default coordinate is Berlin
         self.mapView.centerCoordinate = GetRidesViewController.londonCoordinate;
         // optional - if not specified default zoom is 15.3999996
@@ -20,8 +24,8 @@ class SDKGetRidesViewController: GetRidesViewController {
         // set self.mapView.showUserLocation(true) to show user location on map
         // self.mapView.showUserLocation(true)
 
-        if HereSDKManager.shared?.user == nil {
-            self.showUserNameMissingAlert()
+        if hereSDKmanager.user == nil || !hereSDKmanager.isPhoneNumberVerified() {
+            self.showVerificationDataMissingAlert()
         } else {
             _ = RideStatusServiceImpl.shared()
         }
@@ -111,25 +115,17 @@ extension GetRidesViewController {
         }
     }
 
-    func showUserNameMissingAlert(){
-        let alertViewController = UIAlertController(title: "HereSDK require credentials", message: "Please enter user name", preferredStyle: UIAlertControllerStyle.alert)
-        alertViewController.addTextField { (textField) in
-            textField.placeholder = "user name"
-        }
-        let action = UIAlertAction(title: "OK", style: .default) { (alertAction) in
-            let textField = alertViewController.textFields![0] as UITextField
-            if let username = textField.text{
-                let userExpirationInterval: Int32 = 60 * 60 * 24 * 365 // 1 year
-                let date = Date().addingTimeInterval(TimeInterval(userExpirationInterval))
+    //required data to get results (HereSDKUser, phone verification)
 
-                // Generating user token with expiration time of one year from the current date.
-                self.generateUserCredentialsWithUser(userId: username, expiration: UInt32(date.timeIntervalSince1970))
-                _ = RideStatusServiceImpl.shared()
-            }
-        }
-        alertViewController.addAction(action)
-        self.present(alertViewController, animated: true, completion: nil)
+    //generate user credentials
 
+    private func loginWith(username: String){
+        let userExpirationInterval: Int32 = 60 * 60 * 24 * 365 // 1 year
+        let date = Date().addingTimeInterval(TimeInterval(userExpirationInterval))
+
+        // Generating user token with expiration time of one year from the current date.
+        self.generateUserCredentialsWithUser(userId: username, expiration: UInt32(date.timeIntervalSince1970))
+        _ = RideStatusServiceImpl.shared()
     }
 
     private func generateHash(appKey: String, userId: String, expiration:UInt32, key: String) -> String? {
@@ -144,6 +140,87 @@ extension GetRidesViewController {
                 getRides()
             }
         }
+    }
+
+    private func verifyPhoneNumberWith(number: String){
+        HereSDKManager.shared?.sendVerificationSMS(number, withHandler: { [weak self] (error) in
+            if let error = error{
+                self?.showResendVerificationSmsAlert(message: error.localizedDescription)
+            }
+            else{
+                self?.showEnterVerificationCodeAlert(withMessage: nil, phoneNumber: number)
+            }
+        })
+    }
+
+    private func verifyVerificationCode(verificationCode: String, phoneNumber: String){
+        HereSDKManager.shared?.verifyPhoneNumber(phoneNumber, pinCode: verificationCode, withHandler: { [weak self] (error) in
+            if (error != nil){
+                self?.showEnterVerificationCodeAlert(withMessage: "Wrong verification code, please try again", phoneNumber: phoneNumber)
+            }
+        })
+    }
+
+    //general alerts
+
+    func showVerificationDataMissingAlert(){
+        let alertViewController = UIAlertController(title: "HereSDK require credentials", message: "Please enter user name and phone number in the following format : +CountryCodePhoneNumber", preferredStyle: UIAlertControllerStyle.alert)
+        alertViewController.addTextField { (textField) in
+            textField.placeholder = "user name"
+        }
+
+        alertViewController.addTextField { (textField) in
+            textField.placeholder = "phone number to verify "
+        }
+
+        let action = UIAlertAction(title: "OK", style: .default) { [weak self](alertAction) in
+            let usernameTextField = alertViewController.textFields![0] as UITextField
+            if let username = usernameTextField.text{
+                self?.loginWith(username: username)
+            }
+            let phoneNumberTextField = alertViewController.textFields![1] as UITextField
+            if let phoneNumberString = phoneNumberTextField.text{
+                self?.verifyPhoneNumberWith(number: phoneNumberString)
+            }
+        }
+        alertViewController.addAction(action)
+        self.present(alertViewController, animated: true, completion: nil)
+    }
+
+    private func showResendVerificationSmsAlert(message: String){
+        let alertViewController = UIAlertController(title: "Enter your phone number", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alertViewController.addTextField { (textField) in
+            textField.placeholder = "phone number"
+        }
+        let action = UIAlertAction(title: "OK", style: .default) { [weak self] (alertAction) in
+            let phoneNumberTextField = alertViewController.textFields![0] as UITextField
+            if let phoneNumberString = phoneNumberTextField.text{
+                self?.verifyPhoneNumberWith(number: phoneNumberString)
+            }
+        }
+        alertViewController.addAction(action)
+        self.present(alertViewController, animated: true, completion: nil)
+    }
+
+    private func showEnterVerificationCodeAlert(withMessage: String?, phoneNumber: String){
+        let alertViewController = UIAlertController(title: "Please enter verification code", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+        alertViewController.addTextField { (textField) in
+            textField.placeholder = "verification code"
+        }
+
+        let okAction = UIAlertAction(title: "Verify", style: .default) { [weak self] (alertAction) in
+            let verificationCodeTextField = alertViewController.textFields![0] as UITextField
+            if let verificationCodeText = verificationCodeTextField.text{
+                self?.verifyVerificationCode(verificationCode: verificationCodeText, phoneNumber: phoneNumber)
+            }
+        }
+
+        let resendAction =  UIAlertAction(title: "Resend", style: .default) { [weak self] (alertAction) in
+            self?.verifyPhoneNumberWith(number: phoneNumber)
+        }
+        alertViewController.addAction(okAction)
+        alertViewController.addAction(resendAction)
+        self.present(alertViewController, animated: true, completion: nil)
     }
 }
 

@@ -8,6 +8,7 @@ target 'sampleApp' do
   use_frameworks!
   inhibit_all_warnings!
 
-  pod 'HereSDKDemandKit', '~> 1.1.3'
-  pod 'HereSDKMapKit', '~> 1.1.3'
+  pod  'BoringSSL' , '~> 10.0.6'
+  pod 'HereSDKDemandKit'
+  pod 'HereSDKMapKit'
 end

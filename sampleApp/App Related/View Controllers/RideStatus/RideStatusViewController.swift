@@ -176,6 +176,8 @@ class RideStatusViewController: UIViewController {
             self.actionButton.setTitle(cancelRideString, for: .normal)
         case .logRecordRejected, .logRecordCompleted, .logRecordDriverAtDropoff, .logRecordPassengerOnBoard, .logRecordCancelled:
             self.actionButton.setTitle(finishRideString, for: .normal)
+        case .logRecordFailure:
+            break
         }
     }
 
