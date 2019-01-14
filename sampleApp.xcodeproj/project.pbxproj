@@ -39,6 +39,8 @@
 		F2D1C4422091F5AC003388A2 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D1C4412091F5AC003388A2 /* UIViewExtensions.swift */; };
 		F2D1C4482094FEE4003388A2 /* RideOfferTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D1C4462094FEE3003388A2 /* RideOfferTableCell.swift */; };
 		F2D1C4492094FEE4003388A2 /* RideOffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D1C4472094FEE3003388A2 /* RideOffersViewController.swift */; };
+		F2DA4FE3219F2B850079A09C /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DA4FE2219F2B850079A09C /* AuthorizationViewController.swift */; };
+		F2DA4FE7219F36C70079A09C /* UIAlertControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DA4FE6219F36C70079A09C /* UIAlertControllerExtensions.swift */; };
 		F2F92C0820A341B3008EA19D /* RideDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F92C0320A341B3008EA19D /* RideDetailsCell.swift */; };
 		F2F92C0920A341B3008EA19D /* RideDetailsNumberPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F92C0420A341B3008EA19D /* RideDetailsNumberPickerCell.swift */; };
 		F2F92C0A20A341B3008EA19D /* RideDetailsSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F92C0520A341B3008EA19D /* RideDetailsSwitchCell.swift */; };
@@ -97,6 +99,8 @@
 		F2D1C4412091F5AC003388A2 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		F2D1C4462094FEE3003388A2 /* RideOfferTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideOfferTableCell.swift; sourceTree = "<group>"; };
 		F2D1C4472094FEE3003388A2 /* RideOffersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideOffersViewController.swift; sourceTree = "<group>"; };
+		F2DA4FE2219F2B850079A09C /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
+		F2DA4FE6219F36C70079A09C /* UIAlertControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertControllerExtensions.swift; sourceTree = "<group>"; };
 		F2F92C0320A341B3008EA19D /* RideDetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideDetailsCell.swift; sourceTree = "<group>"; };
 		F2F92C0420A341B3008EA19D /* RideDetailsNumberPickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideDetailsNumberPickerCell.swift; sourceTree = "<group>"; };
 		F2F92C0520A341B3008EA19D /* RideDetailsSwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideDetailsSwitchCell.swift; sourceTree = "<group>"; };
@@ -158,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				F26B003C209672F2001F269E /* RideStatusViewController.swift */,
+				F27FDF9B20A33E3C00FF9634 /* SDKRideStatusViewController.swift */,
 			);
 			path = RideStatus;
 			sourceTree = "<group>";
@@ -165,11 +170,6 @@
 		F27FDF9420A31D4000FF9634 /* SDK Related */ = {
 			isa = PBXGroup;
 			children = (
-				FF4C168920E28A6A002B29C2 /* Extensions */,
-				F27FDF9520A31D8200FF9634 /* SDKGetRidesViewController.swift */,
-				F27FDF9720A32FE400FF9634 /* SDKRideDetailsViewController.swift */,
-				F27FDF9920A3368800FF9634 /* SDKRideOffersViewController.swift */,
-				F27FDF9B20A33E3C00FF9634 /* SDKRideStatusViewController.swift */,
 				91D1B39F21329980003DFB17 /* RideStatusService.swift */,
 				91D1B3A121329A26003DFB17 /* SDKService.swift */,
 			);
@@ -186,8 +186,11 @@
 		F2D1C3EC208E17B7003388A2 /* sampleApp */ = {
 			isa = PBXGroup;
 			children = (
-				F2F92BFF20A3406C008EA19D /* App Related */,
+				F2639FCB20A9EC3C00700381 /* TableView Cells */,
+				F2F92C0020A34081008EA19D /* View Controllers */,
+				F2D1C42A2090CB71003388A2 /* Extensions */,
 				F27FDF9420A31D4000FF9634 /* SDK Related */,
+				F2D1C4232090CA6E003388A2 /* Utils */,
 				F2D1C3ED208E17B7003388A2 /* AppDelegate.swift */,
 				F2D1C3F1208E17B7003388A2 /* Main.storyboard */,
 				F2D1C3F4208E17B7003388A2 /* Assets.xcassets */,
@@ -202,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				F2D1C4212090C744003388A2 /* RideDetailsViewController.swift */,
+				F27FDF9720A32FE400FF9634 /* SDKRideDetailsViewController.swift */,
 				F2F92C0220A34187008EA19D /* RideDetailsTableViewCells */,
 			);
 			path = RideDetails;
@@ -223,13 +227,15 @@
 			isa = PBXGroup;
 			children = (
 				F2C24A05209F066F0081FE22 /* DateExtensions.swift */,
-				F2C24A04209F066F0081FE22 /* UIImageViewExtensions.swift */,
-				F2D1C4412091F5AC003388A2 /* UIViewExtensions.swift */,
+				F2A482BF20B4759A0021D454 /* ErrorExtensions.swift */,
+				FF4C168C20E28C7D002B29C2 /* HereSDKDemandCancellationInfo+Additions.swift */,
 				F2D1C4342091EE2E003388A2 /* UIColor+Additions.swift */,
 				F2D1C4332091EE2E003388A2 /* UIFont+Additions.swift */,
+				F2C24A04209F066F0081FE22 /* UIImageViewExtensions.swift */,
 				F2D1C4352091EE2E003388A2 /* UserDefaultsExtensions.swift */,
-				F2A482BF20B4759A0021D454 /* ErrorExtensions.swift */,
+				F2DA4FE6219F36C70079A09C /* UIAlertControllerExtensions.swift */,
 				FF4C168A20E28AAB002B29C2 /* UIViewControllerExtensions.swift */,
+				F2D1C4412091F5AC003388A2 /* UIViewExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -238,25 +244,24 @@
 			isa = PBXGroup;
 			children = (
 				F2D1C4472094FEE3003388A2 /* RideOffersViewController.swift */,
+				F27FDF9920A3368800FF9634 /* SDKRideOffersViewController.swift */,
 				F2D1C4462094FEE3003388A2 /* RideOfferTableCell.swift */,
 			);
 			path = RideOffers;
 			sourceTree = "<group>";
 		};
-		F2F92BFF20A3406C008EA19D /* App Related */ = {
+		F2DA4FE1219F2B410079A09C /* Authorization */ = {
 			isa = PBXGroup;
 			children = (
-				F2639FCB20A9EC3C00700381 /* TableView Cells */,
-				F2F92C0020A34081008EA19D /* View Controllers */,
-				F2D1C42A2090CB71003388A2 /* Extensions */,
-				F2D1C4232090CA6E003388A2 /* Utils */,
+				F2DA4FE2219F2B850079A09C /* AuthorizationViewController.swift */,
 			);
-			path = "App Related";
+			path = Authorization;
 			sourceTree = "<group>";
 		};
 		F2F92C0020A34081008EA19D /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F2DA4FE1219F2B410079A09C /* Authorization */,
 				F2639FD020A9F9D300700381 /* PublicTransitDetails */,
 				F2639FB820A8852700700381 /* Future Rides */,
 				F2F92C0120A34090008EA19D /* GetRIdes */,
@@ -271,6 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				F2D1C3EF208E17B7003388A2 /* GetRidesViewController.swift */,
+				F27FDF9520A31D8200FF9634 /* SDKGetRidesViewController.swift */,
 			);
 			path = GetRIdes;
 			sourceTree = "<group>";
@@ -285,14 +291,6 @@
 				F2F92C0620A341B3008EA19D /* RideDetailsTextFieldCell.swift */,
 			);
 			path = RideDetailsTableViewCells;
-			sourceTree = "<group>";
-		};
-		FF4C168920E28A6A002B29C2 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				FF4C168C20E28C7D002B29C2 /* HereSDKDemandCancellationInfo+Additions.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -375,7 +373,6 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-sampleApp/Pods-sampleApp-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
 				"${PODS_ROOT}/HereSDKCoreKit/Frameworks/HereSDKCoreKit.framework",
 				"${PODS_ROOT}/HereSDKDemandKit/Frameworks/HereSDKDemandKit.framework",
@@ -389,7 +386,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HereSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HereSDKDemandKit.framework",
@@ -431,6 +427,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2DA4FE3219F2B850079A09C /* AuthorizationViewController.swift in Sources */,
 				F2D1C4222090C744003388A2 /* RideDetailsViewController.swift in Sources */,
 				F2F92C0B20A341B3008EA19D /* RideDetailsTextFieldCell.swift in Sources */,
 				F2D1C4402091EE3B003388A2 /* SwitchView.swift in Sources */,
@@ -457,6 +454,7 @@
 				F27FDF9820A32FE400FF9634 /* SDKRideDetailsViewController.swift in Sources */,
 				F2C24A07209F066F0081FE22 /* DateExtensions.swift in Sources */,
 				F2639FD220A9FA0500700381 /* PublicTransportDetailsTableViewController.swift in Sources */,
+				F2DA4FE7219F36C70079A09C /* UIAlertControllerExtensions.swift in Sources */,
 				F2639FBA20A8857200700381 /* FutureRideOffersViewControllers.swift in Sources */,
 				F2D1C4362091EE2E003388A2 /* UIFont+Additions.swift in Sources */,
 				F2639FCF20A9EE5C00700381 /* FutureRideTableViewCell.swift in Sources */,

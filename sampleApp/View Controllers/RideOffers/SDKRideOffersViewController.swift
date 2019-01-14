@@ -41,8 +41,14 @@ extension RideOffersViewController{
         HereSDKDemandManager.shared.createRide(with: demandRideRequest) { [weak self] ride, error in
             guard let strongSelf = self else { return }
 
-            if error != nil {
-                debugPrint(error.debugDescription)
+            if let error = error{
+                switch error.code{
+                case HereSDKNetworkError.phoneVerificationErr.rawValue:
+                    strongSelf.handlePhoneNotVerifiedError()
+                    break
+                default:
+                     debugPrint(error.localizedDescription)
+                }
             }
             else if strongSelf.isPrebook{ //if prebook ride exist - it presented in future rides VC
                 strongSelf.navigationController?.popToRootViewController(animated: true)
@@ -54,5 +60,26 @@ extension RideOffersViewController{
                 strongSelf.navigationController?.pushViewController(rideStatusViewController, animated: true)
             }
         }
+    }
+
+    private func handlePhoneNotVerifiedError(){
+        let phoneVerificationAlert = UIAlertController(title: "Phone verification needed", message: "you need to verify your phone number to continue", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let continueAction = UIAlertAction(title: "Continue", style: .default, handler: { (action) in
+
+            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+            let authorizationViewController : AuthorizationViewController = storyboard.instantiateViewController(withIdentifier: "AuthorizationViewController") as! AuthorizationViewController
+
+            authorizationViewController.shouldHideNextButton = true
+            authorizationViewController.shouldHideLoginView = true
+            authorizationViewController.shouldHideVerificationView = false
+
+            self.navigationController?.show(authorizationViewController, sender: self)
+        })
+
+        phoneVerificationAlert.addAction(cancelAction)
+        phoneVerificationAlert.addAction(continueAction)
+
+        self.present(phoneVerificationAlert, animated: true, completion: nil)
     }
 }

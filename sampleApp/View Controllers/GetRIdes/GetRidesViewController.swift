@@ -51,13 +51,6 @@ class GetRidesViewController : UIViewController{
         self.locationInLondon = CLLocation(latitude : GetRidesViewController.londonCoordinate.latitude, longitude : GetRidesViewController.londonCoordinate.longitude)
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.isNavigationBarHidden = true
-
-        getRides()
-    }
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         guard let segueIdentifier = segue.identifier else { return }

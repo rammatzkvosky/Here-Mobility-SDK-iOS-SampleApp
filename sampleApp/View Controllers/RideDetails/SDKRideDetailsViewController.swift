@@ -14,7 +14,7 @@ extension RideDetailsViewController{
 
     /// in order to present rides, origin & destination HereSDKAddressData needed (as the object provide full address)
     func showRides(){
-        weak var wSelf = self;
+        weak var wSelf = self
 
         if let geoOrigin = originGeocodeResult, let geoDestination = destinationGeocodeResult, let originAddressId = geoOrigin.addressId, let destinationAddressId = geoDestination.addressId {
             // get full address data for origin & destination HereSDKGeocodeResult

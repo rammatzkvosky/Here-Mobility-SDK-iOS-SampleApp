@@ -97,13 +97,14 @@ extension RideStatusServiceImpl: HereSDKDemandRidesUpdatesDelegate {
     
     func didReceive(_ location: HereSDKDemandRideLocation!, for ride: HereSDKDemandRide!) {
         guard let location = location else { return }
-        
-        let rideId = ride.rideId
-        debugPrint("SDK Ride \(rideId) updated location: \(location.vehicleLocation.coordinate)")
 
-        observers(for: ride.rideId).forEach {observer in
-            DispatchQueue.main.async {
-                observer.didUpdateLocation(location, for: ride)
+        if let vehicleLocation = location.vehicleLocation {
+            debugPrint("SDK Ride \(ride.rideId) updated location: \(vehicleLocation.coordinate)")
+
+            observers(for: ride.rideId).forEach {observer in
+                DispatchQueue.main.async {
+                    observer.didUpdateLocation(location, for: ride)
+                }
             }
         }
     }

@@ -24,7 +24,9 @@ extension SDKRideStatusViewController: RideStatusObserver {
     }
 
     func didUpdateLocation(_ location: HereSDKDemandRideLocation, for ride: HereSDKDemandRide) {
-        debugPrint("(observer)SDK Ride \(ride.rideId) updated location: \(location.vehicleLocation.coordinate)")
-        self.updateUI(for: location)
+        if let vehicleLocation = location.vehicleLocation?.coordinate {
+            debugPrint("(observer)SDK Ride \(ride.rideId) updated location: \(vehicleLocation)")
+            self.updateUI(for: location)
+        }
     }
 }

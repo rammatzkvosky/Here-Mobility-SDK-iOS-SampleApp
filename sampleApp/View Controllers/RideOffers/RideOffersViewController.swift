@@ -20,6 +20,7 @@ class RideOffersViewController: UIViewController {
         }
     }
 
+    @IBOutlet weak var rideRouteLabel: UILabel!
     @IBOutlet private var tableView: UITableView!
 
     override func viewDidLoad() {
@@ -32,7 +33,28 @@ class RideOffersViewController: UIViewController {
     }
 
     private func updateUI(for offers: [HereSDKDemandRideOfferProtocol]) {
+        rideRouteLabel.text = getTaxiRideRouteMessage(offers: offers)
+        rideRouteLabel.sizeToFit()
         tableView.reloadData()
+    }
+}
+
+
+//checks if there is a taxi offer in the offers list, and if there is, gets the confirmed route
+//(in taxis the ride route may be slightly different from the requested route).
+private func getTaxiRideRouteMessage (offers : [HereSDKDemandRideOfferProtocol]) -> String? {
+    guard let taxiOffer = ( offers.first { $0.getTransitType() == .taxi} ) as? HereSDKDemandTaxiRideOffer,
+        let pickupAddress = taxiOffer.route.pickup.address?.stringAddress,
+        let destinationAddress = taxiOffer.route.destination.address?.stringAddress
+        else { return nil }
+
+    return "The confirmed route for taxis may be slightly different from the requested route, the confirmed route is from \(pickupAddress) to \(destinationAddress)"
+}
+
+fileprivate extension HereSDKAddressData {
+    var stringAddress : String? {
+        guard let street = self.street, let number = self.houseNumber else { return nil }
+        return "street: \(street), number:\(number)"
     }
 }
 

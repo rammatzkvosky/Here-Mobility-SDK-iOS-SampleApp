@@ -17,8 +17,8 @@ class RideDetailsViewController: UITableViewController {
 
     static let segueId = "toRideDetailsViewController"
 
-    internal  struct RideDetailsDefaultValues {
-        static let name = "User"
+    internal struct RideDetailsDefaultValues {
+        static let name = "Your name"
         static let phoneNumber = "9725454545"
         static let note = ""
         static let passengersCount = 1
